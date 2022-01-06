@@ -11,3 +11,9 @@ export const getPost = async id => {
 
   return data;
 };
+
+export const getPostComments = async id => {
+  const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
+
+  return data;
+};

@@ -1,10 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import styled from 'styled-components';
+
+const AppDiv = styled('div')`
+  background-color:#0A1929;
+  font-family: 'Playfair Display', serif;
+`;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppDiv>
+      <App />
+    </AppDiv>
   </React.StrictMode>,
   document.getElementById('root')
 );

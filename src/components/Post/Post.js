@@ -12,6 +12,7 @@ const PostWrapper = styled('div')`
   box-sizing: border-box;
   padding: 8px;
   margin: 4px;
+  background: white;
 
   > h6 {
     font-size: 16px;
@@ -29,8 +30,11 @@ const PostWrapper = styled('div')`
   }
 
   > button {
+    color:white;
+    background: linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%);
     width: 100%;
     margin-top: auto;
+    border-radius: 6px;
   }
 `;
 
@@ -45,7 +49,7 @@ const Post = ({ id, title, body }) => {
     <PostWrapper>
       <h6>{title}</h6>
       <p>{body.slice(0, 12)}...</p>
-      <button onClick={handleClick}>detail</button>
+      <button onClick={handleClick}>Detail</button>
     </PostWrapper>
   );
 };

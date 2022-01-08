@@ -14,7 +14,7 @@ const PostDetailWrapper = styled('section')`
   width: 100%;
   max-width: 800px;
   margin: 8px auto;
-  padding: 4px 20px;
+  padding: 8px 28px;
   box-sizing: border-box;
   background: white;
   border-radius: 6px;

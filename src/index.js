@@ -4,7 +4,7 @@ import App from './App';
 import styled from 'styled-components';
 
 const AppDiv = styled('div')`
-  background-color:#0A1929;
+  background-color: black ; //#0A1929
   font-family: 'Playfair Display', serif;
 `;
 

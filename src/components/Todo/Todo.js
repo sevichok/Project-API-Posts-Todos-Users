@@ -1,9 +1,8 @@
 import React from 'react'
-
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const PostWrapper = styled('div')`
+const TodoWrapper = styled('div')`
   flex: 1 0 calc(25% - 8px);
   display: flex;
   flex-direction: column;
@@ -31,27 +30,28 @@ const PostWrapper = styled('div')`
 
   > button {
     color:white;
-    background: hsl(144,100%,19%); //linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%)
+    background: hsl(144,100%,19%);
     width: 100%;
     margin-top: auto;
     border-radius: 6px;
   }
 `;
 
-const Post = ({ id, title, body }) => {
+function Todo({ id, title, completed }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/posts/${id}`);
+    navigate(`/todos/${id}`);
   };
 
   return (
-    <PostWrapper>
-      <h6>{title}</h6>
-      <p>{body.slice(0, 12)}...</p>
+    <TodoWrapper>
+      <h6>Title: {title}</h6>
+      <p>Id: {id}</p>
+      <p>Completed: {completed.toString()}</p>
       <button onClick={handleClick}>Detail</button>
-    </PostWrapper>
-  );
-};
+    </TodoWrapper>
+  )
+}
 
-export default Post
+export default Todo

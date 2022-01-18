@@ -4,6 +4,20 @@ import Timer from './Timer/Timer';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 
+const ButtonsArea = styled('div')`
+  display: flex;
+  justify-content: space-between;
+
+  > button {
+    color:white;
+    background: hsl(144,100%,19%);
+    width: 20%;
+    margin-top: auto;
+    border-radius: 6px;
+  }
+
+`;
+
 const Navigation = styled('nav')`
   width: 100%;
   max-width: 1200px;
@@ -11,8 +25,16 @@ const Navigation = styled('nav')`
   padding: 16px 8px;
   box-sizing: border-box;
   margin-bottom: 16px;
-  background: linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%);
+  background: hsl(32,100%,50%); //linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%)
   box-shadow: 0 0 4px 0 #333;
+
+  > button {
+    color:white;
+    background: hsl(144,100%,19%);
+    width: 20%;
+    margin-top: auto;
+    border-radius: 6px;
+  }
 
   > ul {
     display: flex;
@@ -31,7 +53,7 @@ const NavItem = styled('li')`
     font-family: 'Playfair Display', serif;
     font-size : 30px;
     text-decoration: ${props => (props.active ? 'underline' : 'none')};
-    color: ${props => (props.active ? 'white' : '#66B2FF')};
+    color: ${props => (props.active ? 'black' : 'white')};
   }
 `;
 
@@ -41,6 +63,10 @@ function Header() {
 
   return (
     <Navigation>
+      <ButtonsArea>
+        <button>Change Language</button>
+        <button>Change Theme</button>
+      </ButtonsArea>
       <Timer />
       <ul>
         <NavItem active={location.pathname.includes('posts')}>

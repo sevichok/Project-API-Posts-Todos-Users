@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
 import { getPost, getPostComments } from '../../api/posts';
 import { useRequest } from '../../hooks/useRequest';
+import { useLocales } from "../../providers/LocalesProvider";
 
 const PostDetailWrapper = styled('section')`
   display: flex;
@@ -57,6 +58,8 @@ const PostDetail = () => {
   const isLoading = loadingComments || loadingPost;
   const isError = errorComments || errorPost;
 
+  const { trans } = useLocales();
+
   const handleBackClick = () => {
     navigate(`/posts/`);
   };
@@ -83,7 +86,7 @@ const PostDetail = () => {
             </li>
           ))}
       </CommentsWrapper>
-      <Button onClick={handleBackClick}>Back</Button>
+      <Button onClick={handleBackClick}>{trans.backButton}</Button>
     </PostDetailWrapper>
   );
 };

@@ -1,7 +1,8 @@
 import React from 'react';
 import Timer from './Timer/Timer';
 import Button from '../Button/Button';
-import { useTheme } from "../../providers/ThemeProvider"
+import { useTheme } from "../../providers/ThemeProvider";
+import { useLocales } from "../../providers/LocalesProvider";
 
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
@@ -44,23 +45,24 @@ const NavItem = styled('li')`
 function Header() {
   const location = useLocation();
   const { toggleTheme } = useTheme();
+  const { trans, toggleLang } = useLocales();
 
   return (
     <Navigation>
       <ButtonsArea>
-        <Button>Change Language</Button>
-        <Button onClick={toggleTheme}>Change Theme</Button>
+        <Button onClick={toggleLang}>{trans.changeLang}</Button>
+        <Button onClick={toggleTheme}>{trans.changeTheme}</Button>
       </ButtonsArea>
-      <Timer />
+      <Timer curTime={trans.timer}/>
       <ul>
         <NavItem active={location.pathname.includes('posts')}>
-          <Link to="/posts">Posts</Link>
+          <Link to="/posts">{trans.postsTitle}</Link>
         </NavItem>
         <NavItem active={location.pathname.includes('todos')}>
-          <Link to="/todos">Todos</Link>
+          <Link to="/todos">{trans.todosTitle}</Link>
         </NavItem>
         <NavItem active={location.pathname.includes('users')}>
-          <Link to="/users">Users</Link>
+          <Link to="/users">{trans.usersTitle}</Link>
         </NavItem>
       </ul>
     </Navigation>

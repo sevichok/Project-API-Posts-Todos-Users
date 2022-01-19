@@ -14,7 +14,7 @@ const TimerDiv = styled('div')`
 
 const date = new Date();
 
-function Timer() {
+function Timer({curTime}) {
     const [dateTime, setDateTime] = useState({
         hours: date.getHours(),
         minutes: date.getMinutes(),
@@ -33,7 +33,7 @@ function Timer() {
     }, []);
     return (
         <TimerDiv>
-            Current time : {dateTime.hours}:{dateTime.minutes}:{dateTime.seconds}
+            {curTime} : {dateTime.hours}:{dateTime.minutes}:{dateTime.seconds}
         </TimerDiv>
     );
 }

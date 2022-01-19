@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { getUser } from '../../api/users';
 import { useRequest } from '../../hooks/useRequest';
+import { useLocales } from "../../providers/LocalesProvider";
 
 const UserDetailWrapper = styled('section')`
   width: 100%;
@@ -32,6 +33,8 @@ function UserDetail() {
     const isLoading = loadingUser;
     const isError = errorUser;
 
+    const { trans } = useLocales();
+
     const handleBackClick = () => {
         navigate(`/users/`);
     };
@@ -49,7 +52,7 @@ function UserDetail() {
                     <p>company : {user.company.name}, {user.company.catchPhrase}, {user.company.bs}</p>
                 </>
             )}
-            <Button onClick={handleBackClick}>Back</Button>
+            <Button onClick={handleBackClick}>{trans.backButton}</Button>
 
         </UserDetailWrapper>
     )

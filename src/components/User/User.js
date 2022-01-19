@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
+import { useLocales } from "../../providers/LocalesProvider";
 
 const UserWrapper = styled('div')`
   flex: 1 0 calc(20% - 8px);
@@ -36,6 +37,7 @@ const UserWrapper = styled('div')`
 
 function User({ id, name, username }) {
     const navigate = useNavigate();
+    const { trans } = useLocales();
 
     const handleClick = () => {
         navigate(`/users/${id}`);
@@ -46,7 +48,7 @@ function User({ id, name, username }) {
             <h6>Name: {name}</h6>
             <p>Id: {id}</p>
             <p>Username: {username}</p>
-            <Button onClick={handleClick}>Detail</Button>
+            <Button onClick={handleClick}>{trans.detailButton}</Button>
         </UserWrapper>
     )
 }

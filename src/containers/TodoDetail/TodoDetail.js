@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { getTodo } from '../../api/todos';
 import { useRequest } from '../../hooks/useRequest';
+import { useLocales } from "../../providers/LocalesProvider";
 
 const TodoDetailWrapper = styled('section')`
   width: 100%;
@@ -36,6 +37,7 @@ function TodoDetail() {
         navigate(`/todos/`);
     };
 
+    const { trans } = useLocales();
 
     return (
         <TodoDetailWrapper>
@@ -48,7 +50,7 @@ function TodoDetail() {
                     <p>completed : {todo.completed.toString()}</p>
                 </>
             )}
-            <Button onClick={handleBackClick}>Back</Button>
+            <Button onClick={handleBackClick}>{trans.backButton}</Button>
         </TodoDetailWrapper>
     )
 }

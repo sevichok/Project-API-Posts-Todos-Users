@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
+import { useLocales } from "../../providers/LocalesProvider";
 
 const PostWrapper = styled('div')`
   flex: 1 0 calc(25% - 8px);
@@ -36,6 +37,7 @@ const PostWrapper = styled('div')`
 
 const Post = ({ id, title, body }) => {
   const navigate = useNavigate();
+  const { trans } = useLocales();
 
   const handleClick = () => {
     navigate(`/posts/${id}`);
@@ -45,7 +47,7 @@ const Post = ({ id, title, body }) => {
     <PostWrapper>
       <h6>{title}</h6>
       <p>{body.slice(0, 12)}...</p>
-      <Button onClick={handleClick}>Detail</Button>
+      <Button onClick={handleClick}>{trans.detailButton}</Button>
     </PostWrapper>
   );
 };

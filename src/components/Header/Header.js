@@ -1,5 +1,7 @@
 import React from 'react';
 import Timer from './Timer/Timer';
+import Button from '../Button/Button';
+import { useTheme } from "../../providers/ThemeProvider"
 
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
@@ -7,34 +9,16 @@ import { Link, useLocation } from 'react-router-dom';
 const ButtonsArea = styled('div')`
   display: flex;
   justify-content: space-between;
-
-  > button {
-    color:white;
-    background: hsl(144,100%,19%);
-    width: 20%;
-    margin-top: auto;
-    border-radius: 6px;
-  }
-
 `;
 
 const Navigation = styled('nav')`
-  width: 100%;
   max-width: 1200px;
   margin: auto;
   padding: 16px 8px;
   box-sizing: border-box;
   margin-bottom: 16px;
-  background: hsl(32,100%,50%); //linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%)
+  background-color: ${(props) => props.theme.backgroundColor.header};
   box-shadow: 0 0 4px 0 #333;
-
-  > button {
-    color:white;
-    background: hsl(144,100%,19%);
-    width: 20%;
-    margin-top: auto;
-    border-radius: 6px;
-  }
 
   > ul {
     display: flex;
@@ -46,11 +30,10 @@ const Navigation = styled('nav')`
 
 const NavItem = styled('li')`
   list-style: none;
-  padding: 0;
+  padding: 0px;
   margin: auto;
 
   > a {
-    font-family: 'Playfair Display', serif;
     font-size : 30px;
     text-decoration: ${props => (props.active ? 'underline' : 'none')};
     color: ${props => (props.active ? 'black' : 'white')};
@@ -60,12 +43,13 @@ const NavItem = styled('li')`
 
 function Header() {
   const location = useLocation();
+  const { toggleTheme } = useTheme();
 
   return (
     <Navigation>
       <ButtonsArea>
-        <button>Change Language</button>
-        <button>Change Theme</button>
+        <Button>Change Language</Button>
+        <Button onClick={toggleTheme}>Change Theme</Button>
       </ButtonsArea>
       <Timer />
       <ul>

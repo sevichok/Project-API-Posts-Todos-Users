@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-
+import Button from '../../components/Button';
 import { getPost, getPostComments } from '../../api/posts';
 import { useRequest } from '../../hooks/useRequest';
 
@@ -16,8 +16,9 @@ const PostDetailWrapper = styled('section')`
   margin: 8px auto;
   padding: 8px 28px;
   box-sizing: border-box;
-  background: white;
   border-radius: 6px;
+  background-color: ${(props) => props.theme.backgroundColor.item};
+  color: ${(props) => props.theme.color.first};
 `;
 
 const CommentsWrapper = styled('ol')`
@@ -25,8 +26,9 @@ const CommentsWrapper = styled('ol')`
   padding: 0px 8px;
 
   > li {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid ${(props) => props.theme.button.backgroundColor};
     padding: 4px;
+    margin-bottom: 8px;
 
     > h5 {
       margin: 0px 0px 8px;
@@ -44,6 +46,7 @@ const CommentsWrapper = styled('ol')`
 
 const PostDetail = () => {
   const params = useParams();
+  const navigate = useNavigate();
 
   const requestPostComments = useCallback(() => getPostComments(params.id), [params.id]);
   const { data: comments, loading: loadingComments, error: errorComments } = useRequest(requestPostComments);
@@ -54,7 +57,12 @@ const PostDetail = () => {
   const isLoading = loadingComments || loadingPost;
   const isError = errorComments || errorPost;
 
+  const handleBackClick = () => {
+    navigate(`/posts/`);
+  };
+
   return (
+
     <PostDetailWrapper>
       {isLoading && 'loading...'}
       {isError && 'some error...'}
@@ -75,6 +83,7 @@ const PostDetail = () => {
             </li>
           ))}
       </CommentsWrapper>
+      <Button onClick={handleBackClick}>Back</Button>
     </PostDetailWrapper>
   );
 };

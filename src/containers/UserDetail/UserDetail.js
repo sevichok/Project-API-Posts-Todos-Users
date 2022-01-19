@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { getTodo } from '../../api/todos';
+import { getUser } from '../../api/users';
 import { useRequest } from '../../hooks/useRequest';
 
-const TodoDetailWrapper = styled('section')`
+const UserDetailWrapper = styled('section')`
   width: 100%;
   max-width: 800px;
   margin: 8px auto;
@@ -22,35 +22,37 @@ const TodoDetailWrapper = styled('section')`
   }
 `;
 
-function TodoDetail() {
+function UserDetail() {
     const params = useParams();
     const navigate = useNavigate();
 
-    const requestTodoById = useCallback(() => getTodo(params.id), [params.id]);
-    const { data: todo, loading: loadingTodo, error: errorTodo } = useRequest(requestTodoById);
+    const requestUserById = useCallback(() => getUser(params.id), [params.id]);
+    const { data: user, loading: loadingUser, error: errorUser } = useRequest(requestUserById);
 
-    const isLoading = loadingTodo;
-    const isError = errorTodo;
+    const isLoading = loadingUser;
+    const isError = errorUser;
 
     const handleBackClick = () => {
-        navigate(`/todos/`);
+        navigate(`/users/`);
     };
-
-
     return (
-        <TodoDetailWrapper>
+        <UserDetailWrapper>
             {isLoading && 'loading...'}
             {isError && 'some error...'}
-            {!isLoading && !isError && todo && (
+            {!isLoading && !isError && user && (
                 <>
-                    <h1>{todo.title.toUpperCase()}</h1>
-                    <p>title : {todo.title}</p>
-                    <p>completed : {todo.completed.toString()}</p>
+                    <h1>{user.name.toUpperCase()}</h1>
+                    <p>username : {user.username}</p>
+                    <p>email : {user.email}</p>
+                    <p>address : {user.address.street}, {user.address.suite}, {user.address.city}, {user.address.zipcode}</p>
+                    <p>links : {user.phone}, {user.website}</p>
+                    <p>company : {user.company.name}, {user.company.catchPhrase}, {user.company.bs}</p>
                 </>
             )}
             <Button onClick={handleBackClick}>Back</Button>
-        </TodoDetailWrapper>
+
+        </UserDetailWrapper>
     )
 }
 
-export default TodoDetail
+export default UserDetail

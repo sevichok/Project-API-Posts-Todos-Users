@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PostsPage from '../pages/Posts';
 import TodosPage from '../pages/Todos';

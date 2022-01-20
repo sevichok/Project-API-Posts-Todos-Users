@@ -3,7 +3,6 @@ import {
     ThemeProvider as StyledThemeProvider,
     createGlobalStyle,
 } from "styled-components";
-
 import { firstTheme, secondTheme } from "./constants";
 
 const GlobalStyle = createGlobalStyle`
@@ -16,11 +15,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const ThemeContext = createContext({});
-
 export const useTheme = () => useContext(ThemeContext);
 
 function ThemeProvider({ children }) {
-
     const [theme, setTheme] = useState("firstTheme");
 
     const toggleTheme = useCallback(() => {

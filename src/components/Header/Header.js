@@ -1,5 +1,5 @@
 import React from 'react';
-import Timer from './Timer/Timer';
+// import Timer from './Timer/Timer';
 import Button from '../Button/Button';
 import { useTheme } from "../../providers/ThemeProvider";
 import { useLocales } from "../../providers/LocalesProvider";
@@ -53,7 +53,7 @@ function Header() {
         <Button onClick={toggleLang}>{trans.changeLang}</Button>
         <Button onClick={toggleTheme}>{trans.changeTheme}</Button>
       </ButtonsArea>
-      <Timer curTime={trans.timer}/>
+      {/* <Timer curTime={trans.timer}/> */}
       <ul>
         <NavItem active={location.pathname.includes('posts')}>
           <Link to="/posts">{trans.postsTitle}</Link>
